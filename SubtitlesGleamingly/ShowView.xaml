@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SubtitlesGleamingly"
         mc:Ignorable="d"
-        Title="ShowView" Height="450" Width="800" WindowStyle="None" AllowsTransparency="True" Background="Transparent" MouseEnter="Window_MouseEnter" MouseLeave="Window_MouseLeave">
+        Title="ShowView" Height="450" Width="800" WindowStyle="None" AllowsTransparency="True" Background="#02FFFFFF" MouseEnter="Window_MouseEnter" MouseLeave="Window_MouseLeave" PreviewMouseLeftButtonUp="Window_PreviewMouseLeftButtonUp" PreviewMouseRightButtonUp="Window_PreviewMouseRightButtonUp">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>
@@ -25,7 +25,7 @@
             </Button>
         </Grid>
         <Grid Grid.Column="1">
-            <TextBlock TextWrapping="WrapWithOverflow" Text="{Binding SelectedSubTitleItem}"></TextBlock>
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15" TextWrapping="WrapWithOverflow" Text="{Binding SelectedSubTitleItem}" FontSize="48"></TextBlock>
             
             
             

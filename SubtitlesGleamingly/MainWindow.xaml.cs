@@ -27,6 +27,7 @@ namespace SubtitlesGleamingly
         public MainWindow()
         {
             InitializeComponent();
+            this.ShowInTaskbar = false;
             this.DataContext = this;
         }
 
@@ -124,7 +125,10 @@ namespace SubtitlesGleamingly
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
+            this.Hide();
+            ShowView showView = new ShowView(SubTitleItems,SelectedSubTitleItem);
+            showView.ShowDialog();
+            this.Show();
         }
     }
 }

@@ -27,6 +27,14 @@ namespace SubtitlesGleamingly
             this.DataContext = this;
         }
 
+        public ShowView(ObservableCollection<string> subTitleItems, string selected) : this()
+        {
+            SubTitleItems = subTitleItems;
+            SelectedSubTitleItem = selected;
+            LineIndex = SubTitleItems.IndexOf(SelectedSubTitleItem);
+        }
+
+
         ObservableCollection<string> _SubTitleItems = new ObservableCollection<string>();
         public ObservableCollection<string> SubTitleItems
         {
@@ -90,7 +98,25 @@ namespace SubtitlesGleamingly
 
         private void Window_MouseLeave(object sender, MouseEventArgs e)
         {
-            this.Visibility = Visibility.Hidden;
+            //this.Visibility = Visibility.Hidden;
+        }
+
+        private void Window_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (LineIndex + 1 <= SubTitleItems.Count)
+            {
+                LineIndex++;
+                SelectedSubTitleItem = SubTitleItems[LineIndex];
+            }
+        }
+
+        private void Window_PreviewMouseRightButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            if (LineIndex - 1 >= 0)
+            {
+                LineIndex--;
+                SelectedSubTitleItem = SubTitleItems[LineIndex];
+            }
         }
     }
 }
