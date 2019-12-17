@@ -1,7 +1,12 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -17,11 +22,109 @@ namespace SubtitlesGleamingly
     /// <summary>
     /// MainWindow.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = this;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "字幕|*.ass";
+            if(openFileDialog.ShowDialog()==true)
+            {
+                SubTitleFileName = openFileDialog.FileName;
+                SubTitleItems.Clear();
+                foreach (var item in ParseSubTitle())
+                {
+                    SubTitleItems.Add(item);
+                }
+            }
+        }
+
+        List<string> ParseSubTitle()
+        {
+            List<string> result = new List<string>();
+            var parser = new SubtitlesParser.Classes.Parsers.SsaParser();
+            using (var fileStream = File.OpenRead(SubTitleFileName))
+            {
+                var items = parser.ParseStream(fileStream, Encoding.UTF8);
+                string pattern = @"{.*?}";
+                var list = items.Select(t => t.Lines.Select(x => Regex.Replace(x, pattern, " ").Replace("\\N", "\n")).ToList()).ToList();
+                foreach (var item in list)
+                {
+                    foreach (var line in item)
+                    {
+                        result.Add(line);
+                    }
+                }
+            }
+            return result;
+        }
+
+        ObservableCollection<string> _SubTitleItems = new ObservableCollection<string>();
+        public ObservableCollection<string> SubTitleItems
+        {
+            get
+            {
+                return _SubTitleItems;
+            }
+            set
+            {
+                _SubTitleItems = value;
+                OnPropertyChanged(nameof(SubTitleItems));
+            }
+        }
+
+        string _SelectedSubTitleItem = "";
+        public string SelectedSubTitleItem
+        {
+            get
+            {
+                return _SelectedSubTitleItem;
+            }
+            set
+            {
+                _SelectedSubTitleItem = value;
+                OnPropertyChanged(nameof(SelectedSubTitleItem));
+            }
+        }
+
+        string _SubTitleFileName = "";
+        public string SubTitleFileName
+        {
+            get
+            {
+                return _SubTitleFileName;
+            }
+            set
+            {
+                _SubTitleFileName = value;
+                OnPropertyChanged(nameof(SubTitleFileName));
+            }
+        }
+
+
+        #region INotifyPropertyChanged
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string propertyName = "")
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+        #endregion
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

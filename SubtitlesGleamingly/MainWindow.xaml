@@ -15,20 +15,21 @@
         <Grid Grid.Row="0">
             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" Orientation="Horizontal">
                 <TextBlock VerticalAlignment="Center" Margin="5">字幕文件:</TextBlock>
-                <TextBox Margin="5" Width="450"></TextBox>
-                <Button Margin="5">...</Button>
+                <TextBox Margin="5" Width="450" Text="{Binding SubTitleFileName}"></TextBox>
+                <Button Margin="5" Click="Button_Click">...</Button>
             </StackPanel>
+            <Button HorizontalAlignment="Right" Width="100" Margin="20" Click="Button_Click_1">
+                <Image Source="Resource/htb－Arrow Right (2).png" Stretch="Fill">
+                </Image>
+            </Button>
         </Grid>
-        <Grid Grid.Row="1">
-            <ListView>
+        <Grid Grid.Row="1" Margin="5,20">
+            <ListView ItemsSource="{Binding SubTitleItems}" SelectedItem="{Binding SelectedSubTitleItem}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Content}" TextWrapping="WrapWithOverflow"></TextBlock>
+                        <TextBlock Margin="2,3"  Text="{Binding}" TextWrapping="Wrap"></TextBlock>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-                <ListView.Items>
-                   
-                </ListView.Items>
             </ListView>
         </Grid>
     </Grid>
