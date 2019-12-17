@@ -23,7 +23,7 @@
             <ListView>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock></TextBlock>
+                        <TextBlock Text="{Binding Content}" TextWrapping="WrapWithOverflow"></TextBlock>
                     </DataTemplate>
                 </ListView.ItemTemplate>
                 <ListView.Items>
