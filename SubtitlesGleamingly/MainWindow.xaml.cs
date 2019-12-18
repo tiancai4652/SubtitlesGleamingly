@@ -29,11 +29,19 @@ namespace SubtitlesGleamingly
             InitializeComponent();
             this.ShowInTaskbar = false;
             this.DataContext = this;
+
+            SubTitleFileName = $@"{System.Windows.Forms.Application.StartupPath}\Subtitles\OldFriend1Season\Friends.S01E01.eng.ass";
+            SubTitleItems.Clear();
+            foreach (var item in ParseSubTitle())
+            {
+                SubTitleItems.Add(item);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = $@"{System.Windows.Forms.Application.StartupPath}\Subtitles\OldFriend1Season";
             openFileDialog.Filter = "字幕|*.ass";
             if(openFileDialog.ShowDialog()==true)
             {

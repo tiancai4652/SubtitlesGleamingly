@@ -157,7 +157,7 @@ namespace SubtitlesGleamingly
         private void Grid_MouseWheel(object sender, MouseWheelEventArgs e)
         {
             double step = 0.1;
-            if (e.Delta > 0)
+            if (e.Delta < 0)
             {
                 LineOpacity = LineOpacity - step < 0 ? 0 : LineOpacity - step;
             }
@@ -171,7 +171,7 @@ namespace SubtitlesGleamingly
         {
             //double stepX = 20;
             //double stepY = 10;
-            //if (e.Delta > 0)
+            //if (e.Delta < 0)
             //{
             //    this.Width = this.Width - stepX < 100 ? 100 : this.Width - stepX;
             //    this.Height = this.Height - stepY < 100 ? 100 : this.Height - stepY;
@@ -183,7 +183,7 @@ namespace SubtitlesGleamingly
             //}
 
             double step = 1;
-            if (e.Delta > 0)
+            if (e.Delta < 0)
             {
                 LineFontSize = LineFontSize - step < 10 ? 10 : LineFontSize - step;
             }
@@ -195,7 +195,7 @@ namespace SubtitlesGleamingly
 
         private void TextBlock_MouseWheel(object sender, MouseWheelEventArgs e)
         {
-            if (e.Delta > 0)
+            if (e.Delta < 0)
             {
                 if (LineIndex + 1 <= SubTitleItems.Count)
                 {
