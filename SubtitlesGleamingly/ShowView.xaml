@@ -4,43 +4,41 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SubtitlesGleamingly"
-        mc:Ignorable="d" ResizeMode="CanResizeWithGrip"
-        Title="ShowView" Height="450" Width="800" WindowStyle="None" AllowsTransparency="True" Background="#02FFFFFF"  PreviewMouseLeftButtonUp="Window_PreviewMouseLeftButtonUp" PreviewMouseRightButtonUp="Window_PreviewMouseRightButtonUp" Loaded="Window_Loaded">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="100"/>
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Button Margin="5" Visibility="Collapsed">
-                <Image Source="Resource/add.png"></Image>
-            </Button>
-            <Button Margin="5" Grid.Row="1" Visibility="Collapsed">
-                <Image Source="Resource/reduce.png"></Image>
-            </Button>
+        mc:Ignorable="d" 
+        Title="ShowView" Height="450" Width="800" WindowStyle="None"  AllowsTransparency="True" Background="#02FFFFFF"  PreviewMouseLeftButtonUp="Window_PreviewMouseLeftButtonUp" PreviewMouseRightButtonUp="Window_PreviewMouseRightButtonUp" Loaded="Window_Loaded"
+         ResizeMode="CanResizeWithGrip">
+
+    <Viewbox>
+        <Grid>
+            <Grid >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" MouseWheel="Grid_MouseWheel">
+                    
+                    <!--<Button Margin="5" >
+                    <Image Source="Resource/add.png"></Image>
+                </Button>
+                <Button Margin="5" Grid.Row="1" >
+                    <Image Source="Resource/reduce.png"></Image>
+                </Button>-->
+                </TextBlock>
+                <Grid Grid.Column="1" >
+                    <TextBlock Opacity="{Binding LineOpacity}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15" TextWrapping="WrapWithOverflow" Text="{Binding SelectedSubTitleItem}" FontSize="48" ></TextBlock>
+                </Grid>
+                <TextBlock Grid.Column="2" MouseWheel="Grid_MouseWheel_1">
+                    
+                    <!--<Button Margin="5" >
+                    <Image Source="Resource/add.png"></Image>
+                </Button>
+                <Button Margin="5" Grid.Row="1" >
+                    <Image Source="Resource/reduce.png"></Image>
+                </Button>-->
+                </TextBlock>
+            </Grid>
+
         </Grid>
-        <Grid Grid.Column="1">
-            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15" TextWrapping="WrapWithOverflow" Text="{Binding SelectedSubTitleItem}" FontSize="48" ></TextBlock>
-            
-            
-            
-        </Grid>
-        <Grid Grid.Column="2">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Button Margin="5" Visibility="Collapsed">
-                <Image Source="Resource/add.png"></Image>
-            </Button>
-            <Button Margin="5" Grid.Row="1" Visibility="Collapsed">
-                <Image Source="Resource/reduce.png"></Image>
-            </Button>
-        </Grid>
-    </Grid>
+    </Viewbox>
 </Window>

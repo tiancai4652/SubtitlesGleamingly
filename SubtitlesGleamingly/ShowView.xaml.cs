@@ -50,6 +50,22 @@ namespace SubtitlesGleamingly
             }
         }
 
+
+        double _LineOpacity = 0.5;
+        public double LineOpacity
+        {
+            get
+            {
+                return _LineOpacity;
+            }
+            set
+            {
+                _LineOpacity = value;
+                OnPropertyChanged(nameof(LineOpacity));
+            }
+        }
+
+
         int _LineIndex = 0;
         public int LineIndex
         {
@@ -123,6 +139,35 @@ namespace SubtitlesGleamingly
 
             // Begin dragging the window
             this.DragMove();
+        }
+
+        private void Grid_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            double step = 0.1;
+            if (e.Delta > 0)
+            {
+                LineOpacity = LineOpacity - step < 0 ? 0 : LineOpacity - step;
+            }
+            else
+            {
+                LineOpacity = LineOpacity + step > 1 ? 1 : LineOpacity + step;
+            }
+        }
+
+        private void Grid_MouseWheel_1(object sender, MouseWheelEventArgs e)
+        {
+            double stepX = 20;
+            double stepY = 10;
+            if (e.Delta > 0)
+            {
+                this.Width = this.Width - stepX < 100 ? 100 : this.Width - stepX;
+                this.Height = this.Height - stepY < 100 ? 100 : this.Height - stepY;
+            }
+            else
+            {
+                this.Width = this.Width + stepX;
+                this.Height = this.Height + stepY;
+            }
         }
     }
 }
