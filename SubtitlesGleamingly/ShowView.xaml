@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SubtitlesGleamingly"
-        mc:Ignorable="d"
-        Title="ShowView" Height="450" Width="800" WindowStyle="None" AllowsTransparency="True" Background="#02FFFFFF" MouseEnter="Window_MouseEnter" MouseLeave="Window_MouseLeave" PreviewMouseLeftButtonUp="Window_PreviewMouseLeftButtonUp" PreviewMouseRightButtonUp="Window_PreviewMouseRightButtonUp">
+        mc:Ignorable="d" ResizeMode="CanResizeWithGrip"
+        Title="ShowView" Height="450" Width="800" WindowStyle="None" AllowsTransparency="True" Background="#02FFFFFF"  PreviewMouseLeftButtonUp="Window_PreviewMouseLeftButtonUp" PreviewMouseRightButtonUp="Window_PreviewMouseRightButtonUp" Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>
@@ -17,15 +17,15 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Button Margin="5" >
+            <Button Margin="5" Visibility="Collapsed">
                 <Image Source="Resource/add.png"></Image>
             </Button>
-            <Button Margin="5" Grid.Row="1">
+            <Button Margin="5" Grid.Row="1" Visibility="Collapsed">
                 <Image Source="Resource/reduce.png"></Image>
             </Button>
         </Grid>
         <Grid Grid.Column="1">
-            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15" TextWrapping="WrapWithOverflow" Text="{Binding SelectedSubTitleItem}" FontSize="48"></TextBlock>
+            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15" TextWrapping="WrapWithOverflow" Text="{Binding SelectedSubTitleItem}" FontSize="48" ></TextBlock>
             
             
             
@@ -35,10 +35,10 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Button Margin="5" >
+            <Button Margin="5" Visibility="Collapsed">
                 <Image Source="Resource/add.png"></Image>
             </Button>
-            <Button Margin="5" Grid.Row="1">
+            <Button Margin="5" Grid.Row="1" Visibility="Collapsed">
                 <Image Source="Resource/reduce.png"></Image>
             </Button>
         </Grid>

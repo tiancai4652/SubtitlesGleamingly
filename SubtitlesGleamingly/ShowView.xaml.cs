@@ -21,6 +21,8 @@ namespace SubtitlesGleamingly
     /// </summary>
     public partial class ShowView : Window, INotifyPropertyChanged
     {
+      
+
         public ShowView()
         {
             InitializeComponent();
@@ -33,7 +35,6 @@ namespace SubtitlesGleamingly
             SelectedSubTitleItem = selected;
             LineIndex = SubTitleItems.IndexOf(SelectedSubTitleItem);
         }
-
 
         ObservableCollection<string> _SubTitleItems = new ObservableCollection<string>();
         public ObservableCollection<string> SubTitleItems
@@ -91,15 +92,7 @@ namespace SubtitlesGleamingly
 
         #endregion
 
-        private void Window_MouseEnter(object sender, MouseEventArgs e)
-        {
-            this.Visibility = Visibility.Visible;
-        }
-
-        private void Window_MouseLeave(object sender, MouseEventArgs e)
-        {
-            //this.Visibility = Visibility.Hidden;
-        }
+     
 
         private void Window_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -117,6 +110,19 @@ namespace SubtitlesGleamingly
                 LineIndex--;
                 SelectedSubTitleItem = SubTitleItems[LineIndex];
             }
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            //this.MouseDown += delegate { DragMove(); };
+        }
+
+        protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
+        {
+            base.OnMouseLeftButtonDown(e);
+
+            // Begin dragging the window
+            this.DragMove();
         }
     }
 }
