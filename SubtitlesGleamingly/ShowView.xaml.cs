@@ -21,7 +21,7 @@ namespace SubtitlesGleamingly
     /// </summary>
     public partial class ShowView : Window, INotifyPropertyChanged
     {
-      
+
 
         public ShowView()
         {
@@ -32,7 +32,7 @@ namespace SubtitlesGleamingly
         public ShowView(ObservableCollection<string> subTitleItems, string selected) : this()
         {
             SubTitleItems = subTitleItems;
-            SelectedSubTitleItem = selected;
+            SelectedSubTitleItem = string.IsNullOrEmpty(selected) ? subTitleItems?.Count == 0 ? "" : subTitleItems[0] : "";
             LineIndex = SubTitleItems.IndexOf(SelectedSubTitleItem);
         }
 
@@ -65,6 +65,19 @@ namespace SubtitlesGleamingly
             }
         }
 
+        double _LineFontSize = 48;
+        public double LineFontSize
+        {
+            get
+            {
+                return _LineFontSize;
+            }
+            set
+            {
+                _LineFontSize = value;
+                OnPropertyChanged(nameof(LineFontSize));
+            }
+        }
 
         int _LineIndex = 0;
         public int LineIndex
@@ -108,7 +121,7 @@ namespace SubtitlesGleamingly
 
         #endregion
 
-     
+
 
         private void Window_PreviewMouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
@@ -156,17 +169,47 @@ namespace SubtitlesGleamingly
 
         private void Grid_MouseWheel_1(object sender, MouseWheelEventArgs e)
         {
-            double stepX = 20;
-            double stepY = 10;
+            //double stepX = 20;
+            //double stepY = 10;
+            //if (e.Delta > 0)
+            //{
+            //    this.Width = this.Width - stepX < 100 ? 100 : this.Width - stepX;
+            //    this.Height = this.Height - stepY < 100 ? 100 : this.Height - stepY;
+            //}
+            //else
+            //{
+            //    this.Width = this.Width + stepX;
+            //    this.Height = this.Height + stepY;
+            //}
+
+            double step = 1;
             if (e.Delta > 0)
             {
-                this.Width = this.Width - stepX < 100 ? 100 : this.Width - stepX;
-                this.Height = this.Height - stepY < 100 ? 100 : this.Height - stepY;
+                LineFontSize = LineFontSize - step < 10 ? 10 : LineFontSize - step;
             }
             else
             {
-                this.Width = this.Width + stepX;
-                this.Height = this.Height + stepY;
+                LineFontSize = LineFontSize + step;
+            }
+        }
+
+        private void TextBlock_MouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            if (e.Delta > 0)
+            {
+                if (LineIndex + 1 <= SubTitleItems.Count)
+                {
+                    LineIndex++;
+                    SelectedSubTitleItem = SubTitleItems[LineIndex];
+                }
+            }
+            else
+            {
+                if (LineIndex - 1 >= 0)
+                {
+                    LineIndex--;
+                    SelectedSubTitleItem = SubTitleItems[LineIndex];
+                }
             }
         }
     }
