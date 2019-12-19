@@ -40,10 +40,12 @@ namespace SubtitlesGleamingly
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.InitialDirectory = $@"{System.Windows.Forms.Application.StartupPath}\Subtitles\OldFriend1Season";
-            openFileDialog.Filter = "字幕|*.ass";
-            if(openFileDialog.ShowDialog()==true)
+            OpenFileDialog openFileDialog = new OpenFileDialog()
+            {
+                InitialDirectory = $@"{System.Windows.Forms.Application.StartupPath}\Subtitles\OldFriend1Season",
+                Filter = "字幕|*.ass"
+            };
+            if (openFileDialog.ShowDialog() == true)
             {
                 SubTitleFileName = openFileDialog.FileName;
                 SubTitleItems.Clear();
@@ -122,11 +124,7 @@ namespace SubtitlesGleamingly
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName = "")
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         #endregion
