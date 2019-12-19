@@ -136,7 +136,7 @@ namespace SubtitlesGleamingly
             this.Hide();
             ShowView showView = new ShowView(SubTitleItems,SelectedSubTitleItem);
             showView.ShowDialog();
-            this.Show();
+            this.ShowDialog();
         }
     }
 }
