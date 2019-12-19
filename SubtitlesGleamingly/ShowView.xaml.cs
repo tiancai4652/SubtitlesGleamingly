@@ -32,7 +32,7 @@ namespace SubtitlesGleamingly
         public ShowView(ObservableCollection<string> subTitleItems, string selected) : this()
         {
             SubTitleItems = subTitleItems;
-            SelectedSubTitleItem = string.IsNullOrEmpty(selected) ? subTitleItems?.Count == 0 ? "" : subTitleItems[0] : "";
+            SelectedSubTitleItem = string.IsNullOrEmpty(selected) ? subTitleItems?.Count == 0 ? "" : subTitleItems[0] : selected;
             LineIndex = SubTitleItems.IndexOf(SelectedSubTitleItem);
         }
 
@@ -211,6 +211,11 @@ namespace SubtitlesGleamingly
                     SelectedSubTitleItem = SubTitleItems[LineIndex];
                 }
             }
+        }
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+
         }
     }
 }

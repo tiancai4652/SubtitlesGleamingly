@@ -24,13 +24,13 @@
             </Button>
         </Grid>
         <Grid Grid.Row="1" Margin="5,20">
-            <ListView ItemsSource="{Binding SubTitleItems}" SelectedItem="{Binding SelectedSubTitleItem}">
-                <ListView.ItemTemplate>
+            <ListBox ItemsSource="{Binding SubTitleItems}" SelectedItem="{Binding SelectedSubTitleItem}" >
+                <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Margin="2,3"  Text="{Binding}" TextWrapping="Wrap"></TextBlock>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </Grid>
     </Grid>
 </Window>

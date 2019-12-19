@@ -133,10 +133,10 @@ namespace SubtitlesGleamingly
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            this.Hide();
+            this.Visibility= Visibility.Hidden;
             ShowView showView = new ShowView(SubTitleItems,SelectedSubTitleItem);
             showView.ShowDialog();
-            this.ShowDialog();
+            this.Visibility = Visibility.Visible;
         }
     }
 }
