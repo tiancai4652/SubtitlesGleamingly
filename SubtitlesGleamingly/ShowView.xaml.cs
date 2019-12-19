@@ -51,7 +51,7 @@ namespace SubtitlesGleamingly
         }
 
 
-        double _LineOpacity = 0.8;
+        double _LineOpacity = 0.5;
         public double LineOpacity
         {
             get
