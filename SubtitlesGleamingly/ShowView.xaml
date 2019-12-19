@@ -6,28 +6,98 @@
         xmlns:local="clr-namespace:SubtitlesGleamingly"
         mc:Ignorable="d" 
         Title="ShowView"  WindowStyle="None"  AllowsTransparency="True" Background="#02FFFFFF"  PreviewMouseLeftButtonUp="Window_PreviewMouseLeftButtonUp" PreviewMouseRightButtonUp="Window_PreviewMouseRightButtonUp" Loaded="Window_Loaded"
-         ResizeMode="CanResizeWithGrip" Topmost="True">
+         ResizeMode="CanResizeWithGrip" Topmost="True" Height="100" Width="250" Style="{DynamicResource WindowStyle1}" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ControlTemplate x:Key="WindowTemplateKey" TargetType="{x:Type Window}">
+            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                <Grid>
+                    <AdornerDecorator>
+                        <ContentPresenter/>
+                    </AdornerDecorator>
+                    <ResizeGrip x:Name="WindowResizeGrip" HorizontalAlignment="Right" IsTabStop="false" Visibility="Collapsed" VerticalAlignment="Bottom" Style="{DynamicResource ResizeGripStyle1}"/>
+                </Grid>
+            </Border>
+            <ControlTemplate.Triggers>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="ResizeMode" Value="CanResizeWithGrip"/>
+                        <Condition Property="WindowState" Value="Normal"/>
+                    </MultiTrigger.Conditions>
+                    <Setter Property="Visibility" TargetName="WindowResizeGrip" Value="Visible"/>
+                </MultiTrigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <Style x:Key="WindowStyle1" TargetType="{x:Type Window}">
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}"/>
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Window}">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                            <AdornerDecorator>
+                                <ContentPresenter/>
+                            </AdornerDecorator>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="ResizeMode" Value="CanResizeWithGrip">
+                    <Setter Property="Template" Value="{StaticResource WindowTemplateKey}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <LinearGradientBrush x:Key="ResizeGripperForeground" EndPoint="1,0.75" StartPoint="0,0.25">
+            <GradientStop Color="#FFFFFF" Offset="0.3"/>
+            <GradientStop Color="#BBC5D7" Offset="0.75"/>
+            <GradientStop Color="#6D83A9" Offset="1"/>
+        </LinearGradientBrush>
+        <Style x:Key="ResizeGripStyle1" TargetType="{x:Type ResizeGrip}">
+            <Setter Property="MinWidth" Value="{DynamicResource {x:Static SystemParameters.VerticalScrollBarWidthKey}}"/>
+            <Setter Property="MinHeight" Value="{DynamicResource {x:Static SystemParameters.HorizontalScrollBarHeightKey}}"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ResizeGrip}">
+                        <Grid Background="{TemplateBinding Background}" SnapsToDevicePixels="true">
+                            <Path Data="M 9,0 L 11,0 L 11,11 L 0,11 L 0,9 L 3,9 L 3,6 L 6,6 L 6,3 L 9,3 z" HorizontalAlignment="Right" Margin="0,0,2,2" VerticalAlignment="Bottom" Stretch="Fill" Width="22" Height="22">
+                                <Path.Fill>
+                                    <DrawingBrush TileMode="Tile" Viewbox="0,0,3,3" Viewport="0,0,3,3" ViewportUnits="Absolute" ViewboxUnits="Absolute">
+                                        <DrawingBrush.Drawing>
+                                            <DrawingGroup>
+                                                <GeometryDrawing Brush="{StaticResource ResizeGripperForeground}" Geometry="M 0,0 L 2,0 L 2,2 L 0,2 z "/>
+                                            </DrawingGroup>
+                                        </DrawingBrush.Drawing>
+                                    </DrawingBrush>
+                                </Path.Fill>
+                            </Path>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
 
     <!--<Viewbox>-->
-        <Grid>
-            <Grid >
-                <Grid Grid.Column="1" >
-                    <TextBlock Opacity="{Binding LineOpacity}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15" TextWrapping="WrapWithOverflow" Text="{Binding SelectedSubTitleItem}" FontSize="{Binding LineFontSize}" ></TextBlock>
-                </Grid>
-            </Grid>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" MouseWheel="Grid_MouseWheel">
-                </TextBlock>
-                <TextBlock Grid.Column="1" MouseWheel="TextBlock_MouseWheel">
-                </TextBlock>
-                <TextBlock Grid.Column="2" MouseWheel="Grid_MouseWheel_1">
-                </TextBlock>
+    <Grid>
+        <Grid >
+            <Grid Grid.Column="1" >
+                <TextBlock Opacity="{Binding LineOpacity}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15" TextWrapping="WrapWithOverflow" Text="{Binding SelectedSubTitleItem}" FontSize="{Binding LineFontSize}" ></TextBlock>
             </Grid>
         </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" MouseWheel="Grid_MouseWheel">
+            </TextBlock>
+            <TextBlock Grid.Column="1" MouseWheel="TextBlock_MouseWheel">
+            </TextBlock>
+            <TextBlock Grid.Column="2" MouseWheel="Grid_MouseWheel_1">
+            </TextBlock>
+        </Grid>
+    </Grid>
     <!--</Viewbox>-->
 </Window>
