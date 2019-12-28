@@ -43,15 +43,26 @@ namespace SubtitlesGleamingly
             OpenFileDialog openFileDialog = new OpenFileDialog()
             {
                 InitialDirectory = $@"{System.Windows.Forms.Application.StartupPath}\Subtitles\OldFriend1Season",
-                Filter = "字幕|*.ass"
+                //Filter = "字幕|*.ass"
             };
             if (openFileDialog.ShowDialog() == true)
             {
                 SubTitleFileName = openFileDialog.FileName;
-                SubTitleItems.Clear();
-                foreach (var item in ParseSubTitle())
+                if (SubTitleFileName.EndsWith(".ass"))
                 {
-                    SubTitleItems.Add(item);
+                    SubTitleItems.Clear();
+                    foreach (var item in ParseSubTitle())
+                    {
+                        SubTitleItems.Add(item);
+                    }
+                }
+                else if (SubTitleFileName.EndsWith(".txt"))
+                {
+                    SubTitleItems.Clear();
+                    foreach (var item in ParseText())
+                    {
+                        SubTitleItems.Add(item);
+                    }
                 }
             }
         }
@@ -72,6 +83,21 @@ namespace SubtitlesGleamingly
                         result.Add(line);
                     }
                 }
+            }
+            return result;
+        }
+
+        List<string> ParseText()
+        {
+            List<string> result = new List<string>();
+
+            var longStr = File.ReadAllText(SubTitleFileName, Encoding.UTF8);
+
+            var list = longStr.Split('，', '。','？');
+
+            foreach (var line in list)
+            {
+                result.Add(line);
             }
             return result;
         }

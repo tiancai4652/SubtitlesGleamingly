@@ -82,7 +82,7 @@
     <Grid>
         <Grid >
             <Grid Grid.Column="1" >
-                <TextBlock Opacity="{Binding LineOpacity}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="15" TextWrapping="WrapWithOverflow" Text="{Binding SelectedSubTitleItem}" FontSize="{Binding LineFontSize}" ></TextBlock>
+                <TextBlock Opacity="{Binding LineOpacity}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="15" TextWrapping="WrapWithOverflow" Text="{Binding SelectedSubTitleItem}" FontSize="{Binding LineFontSize}" ></TextBlock>
             </Grid>
         </Grid>
         <Grid>
