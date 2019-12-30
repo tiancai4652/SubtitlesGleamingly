@@ -30,7 +30,36 @@ namespace SubtitlesGleamingly.DB
 
         public static void xx1()
         {
-            var list= MyContext.GetRepository<BookLabel>().Where(t=>t.FileName=="1111").IncludeMany(t=>t.Labels).ToList();
+            var list = MyContext.GetRepository<BookLabel>().Where(t => t.FileName == "1111").IncludeMany(t => t.Labels).ToList();
+        }
+
+        public static List<BookLabel> GetBookLabel(string fileName)
+        {
+            var sql1 = MyContext.GetRepository<BookLabel>().Where(t => t.FileName == fileName).ToSql();
+            var query1 = MyContext.GetRepository<BookLabel>().Where(t => t.FileName == fileName);
+            var sql2 = query1.IncludeMany(t => t.Labels.Where(x => x.BookLabel_ID == t.ID)).ToSql();
+            return MyContext.GetRepository<BookLabel>().Where(t => t.FileName == fileName).IncludeMany(t => t.Labels.Where(l => l.BookLabel_ID == t.ID)).ToList();
+        }
+
+        public static void SetBookLabel(string filename, Label label)
+        {
+            var list = GetBookLabel(filename);
+            if (list.Count > 0)
+            {
+                var bl = list[0];
+                bl.Labels.Add(label);
+                MyContext.GetRepository<BookLabel>().Update(bl);
+            }
+            else
+            {
+                var book = new BookLabel()
+                {
+                    ID = Guid.NewGuid(),
+                    FileName = filename,
+                    Labels = new ObservableCollection<Label> { label }
+                };
+                MyContext.GetRepository<BookLabel>().Insert(book);
+            }
         }
 
         //public static void insertTest(string fileName, int lineIndex)

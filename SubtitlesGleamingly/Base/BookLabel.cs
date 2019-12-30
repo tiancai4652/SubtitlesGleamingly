@@ -28,8 +28,8 @@ namespace SubtitlesGleamingly.Base
             }
         }
 
-        ObservableCollection<Label> _Labels = new ObservableCollection<Label>();
-        public virtual ObservableCollection<Label> Labels
+        ICollection<Label> _Labels;
+        public virtual ICollection<Label> Labels
         {
             get
             {

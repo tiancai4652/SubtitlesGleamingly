@@ -1,4 +1,5 @@
 ﻿using SubtitlesGleamingly.Base;
+using SubtitlesGleamingly.DB;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Label = SubtitlesGleamingly.Base.Label;
 
 namespace SubtitlesGleamingly
 {
@@ -30,12 +32,15 @@ namespace SubtitlesGleamingly
             this.DataContext = this;
         }
 
-        public ShowView(ObservableCollection<BookLine> subTitleItems, BookLine selected) : this()
+        public ShowView(string fileName, ObservableCollection<BookLine> subTitleItems, BookLine selected) : this()
         {
+            FileName = fileName;
             SubTitleItems = subTitleItems;
-            SelectedSubTitleItem = selected==null ? subTitleItems?.Count == 0 ? null : subTitleItems[0] : selected;
+            SelectedSubTitleItem = selected == null ? subTitleItems?.Count == 0 ? null : subTitleItems[0] : selected;
             LineIndex = SubTitleItems.IndexOf(SelectedSubTitleItem);
         }
+
+        public string FileName { get; set; }
 
         ObservableCollection<BookLine> _SubTitleItems = new ObservableCollection<BookLine>();
         public ObservableCollection<BookLine> SubTitleItems
@@ -212,7 +217,14 @@ namespace SubtitlesGleamingly
 
         private void Window_Closing(object sender, CancelEventArgs e)
         {
-
+            //var book = new BookLabel()
+            //{
+            //    ID = Guid.NewGuid(),
+            //    FileName = FileName,
+            //    Labels = new ObservableCollection<Label> { new Label() { ID = Guid.NewGuid(), Location = LineIndex } }
+            //};
+            var Label = new Label() { ID = Guid.NewGuid(), Location = LineIndex };
+            DBHelper.SetBookLabel(FileName,Label);
         }
     }
 }

@@ -29,11 +29,18 @@ namespace SubtitlesGleamingly
         public MainWindow()
         {
             InitializeComponent();
+
+            //DBHelper.xx();
+            //DBHelper.xx1();
+
+
             this.ShowInTaskbar = false;
             this.DataContext = this;
 
             SubTitleFileName = $@"{System.Windows.Forms.Application.StartupPath}\Subtitles\OldFriend1Season\Friends.S01E01.eng.ass";
             ParseFileAndShow();
+
+         
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -75,6 +82,45 @@ namespace SubtitlesGleamingly
                     SubTitleItems.Add(new BookLine() { LineValue = item });
                 }
             }
+
+            if (SubTitleItems.Count > 0)
+            {
+                var listBookLabel = DBHelper.GetBookLabel(SubTitleFileName);
+                if (listBookLabel != null && listBookLabel.Count > 0)
+                {
+                    var bl = listBookLabel.First();
+                    foreach (var label in bl.Labels)
+                    {
+                        if (SubTitleItems.Count >= label.Location)
+                        {
+                            SubTitleItems[label.Location].Label = label;
+                        }
+                    }
+                    SelectedSubTitleItem = SubTitleItems[bl.Labels.Last().Location];
+                }
+                ParseBookLabel();
+            }
+        }
+
+        void ParseBookLabel()
+        {
+            if (SubTitleItems.Count > 0)
+            {
+                var listBookLabel = DBHelper.GetBookLabel(SubTitleFileName);
+                if (listBookLabel != null && listBookLabel.Count > 0)
+                {
+                    var bl = listBookLabel.First();
+                    foreach (var label in bl.Labels)
+                    {
+                        if (SubTitleItems.Count >= label.Location)
+                        {
+                            SubTitleItems[label.Location].Label = label;
+                        }
+                    }
+                    SelectedSubTitleItem = SubTitleItems[bl.Labels.Last().Location];
+                    ListBox.ScrollIntoView(SelectedSubTitleItem);
+                }
+            }
         }
 
         List<string> ParseSubTitle()
@@ -103,7 +149,7 @@ namespace SubtitlesGleamingly
 
             var longStr = File.ReadAllText(SubTitleFileName, Encoding.UTF8);
 
-            var list = longStr.Split('，', '。','？');
+            var list = longStr.Split('，', '。', '？');
 
             foreach (var line in list)
             {
@@ -126,7 +172,7 @@ namespace SubtitlesGleamingly
             }
         }
 
-        BookLine _SelectedSubTitleItem ;
+        BookLine _SelectedSubTitleItem;
         public BookLine SelectedSubTitleItem
         {
             get
@@ -168,9 +214,10 @@ namespace SubtitlesGleamingly
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Visibility = Visibility.Hidden;
-            ShowView showView = new ShowView(SubTitleItems, SelectedSubTitleItem);
+            ShowView showView = new ShowView(SubTitleFileName, SubTitleItems, SelectedSubTitleItem);
             showView.ShowDialog();
             this.Visibility = Visibility.Visible;
+            ParseBookLabel();
         }
 
 
