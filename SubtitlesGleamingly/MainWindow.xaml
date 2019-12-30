@@ -24,12 +24,20 @@
             </Button>
         </Grid>
         <Grid Grid.Row="1" Margin="5,20">
-            <ListBox ItemsSource="{Binding SubTitleItems}" SelectedItem="{Binding SelectedSubTitleItem}" >
+            <ListBox ItemsSource="{Binding SubTitleItems}" SelectedItem="{Binding SelectedSubTitleItem}" x:Name="ListBox" Width="auto">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Margin="2,3"  Text="{Binding}" TextWrapping="Wrap"></TextBlock>
+                        <Grid Margin="2,3">
+                            <TextBlock Text="{Binding}" TextWrapping="Wrap"></TextBlock>
+                            <Image Source="Resource/书签.png" HorizontalAlignment="Right"  Height="30"></Image>
+                        </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    </Style>
+                </ListBox.ItemContainerStyle>
             </ListBox>
         </Grid>
     </Grid>

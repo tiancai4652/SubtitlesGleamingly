@@ -303,6 +303,9 @@
   <ItemGroup>
     <Folder Include="bin\Debug\Database\" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resource\书签.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\Fody.6.0.5\build\Fody.targets" Condition="Exists('packages\Fody.6.0.5\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
