@@ -151,9 +151,13 @@ namespace SubtitlesGleamingly
 
             var list = longStr.Split('，', '。', '？');
 
-            foreach (var line in list)
+            foreach (string line in list)
             {
-                result.Add(line);
+                var lineTrip = line.Trim();
+                if (!string.IsNullOrEmpty(lineTrip))
+                {
+                    result.Add(lineTrip);
+                }
             }
             return result;
         }
