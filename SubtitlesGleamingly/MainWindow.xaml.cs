@@ -170,5 +170,7 @@ namespace SubtitlesGleamingly
             showView.ShowDialog();
             this.Visibility = Visibility.Visible;
         }
+
+
     }
 }

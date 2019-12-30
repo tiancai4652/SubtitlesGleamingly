@@ -93,7 +93,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DB\BookLabel.cs" />
+    <Compile Include="Base\BookLine.cs" />
+    <Compile Include="Base\BookLabel.cs" />
+    <Compile Include="Base\INotifyPropertyChangedBase.cs" />
     <Compile Include="DB\DBHelper.cs" />
     <Compile Include="ShowView.xaml.cs">
       <DependentUpon>ShowView.xaml</DependentUpon>
