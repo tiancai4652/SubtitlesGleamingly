@@ -15,55 +15,69 @@ namespace SubtitlesGleamingly.DB
     .UseAutoSyncStructure(true) //自动同步实体结构到数据库
     .Build();
 
-       
-
-        public static void insertTest(string fileName, int lineIndex)
+        public static void xx()
         {
-            var id = Guid.NewGuid();
             var book = new BookLabel()
             {
-                ID = id,
-                FileName = fileName,
-                Labels = new List<Label> { new Label() { ID = Guid.NewGuid(), BookLabelID = id, Location = 1 } }
+                ID = Guid.NewGuid(),
+                FileName = "1111",
+                Labels = new List<Label> { new Label() { ID = Guid.NewGuid(), Location = 1 } }
             };
-            MyContext.Insert<BookLabel>(book).ExecuteAffrows();
-
-            foreach (var item in book.Labels)
-            {
-                MyContext.Insert<Label>(item).ExecuteAffrows();
-            }
+            MyContext.GetRepository<BookLabel>().Insert(book);
         }
 
-        public static void InsertBookLabel(string fileName, int lineIndex, string note = "")
+        public static void xx1()
         {
-            var bl = MyContext.Queryable<BookLabel>().Where(a => a.FileName.Equals(fileName)).First();
-            if (bl == null)
-            {
-                var label = new Label() { BookLabelID = bl.ID, ID = Guid.NewGuid(), Location = lineIndex, Note = note };
-                MyContext.Insert<Label>(label).ExecuteAffrows();
-            }
-            else
-            {
-                var id = Guid.NewGuid();
-                var book = new BookLabel()
-                {
-                    ID = id,
-                    FileName = fileName,
-                    Labels = new List<Label> { new Label() { ID = Guid.NewGuid(), BookLabelID = id, Location = lineIndex, Note = note } }
-                };
-                MyContext.Insert<BookLabel>(book).ExecuteAffrows();
-
-                foreach (var item in book.Labels)
-                {
-                    MyContext.Insert<Label>(item).ExecuteAffrows();
-                }
-            }
+            var list= MyContext.GetRepository<BookLabel>().Where(t=>t.FileName=="1111").IncludeMany(t=>t.Labels).ToList();
         }
 
-        public static BookLabel QueryBookLable(string fileName)
-        {
-            return MyContext.Queryable<BookLabel>().Where(t => t.FileName.Equals(fileName)).LeftJoin<Label>((a, b) => b.BookLabelID.Equals(a.ID)).First();
-        }
+        //public static void insertTest(string fileName, int lineIndex)
+        //{
+        //    var id = Guid.NewGuid();
+        //    var book = new BookLabel()
+        //    {
+        //        ID = id,
+        //        FileName = fileName,
+        //        Labels = new List<Label> { new Label() { ID = Guid.NewGuid(), Location = 1 } }
+        //    };
+        //    MyContext.Insert<BookLabel>(book).ExecuteAffrows();
+
+        //    foreach (var item in book.Labels)
+        //    {
+        //        MyContext.Insert<Label>(item).ExecuteAffrows();
+        //    }
+        //}
+
+        //public static void InsertBookLabel(string fileName, int lineIndex, string note = "")
+        //{
+        //    var bl = MyContext.Queryable<BookLabel>().Where(a => a.FileName.Equals(fileName)).First();
+        //    if (bl == null)
+        //    {
+        //        var label = new Label() { BookLabelID = bl.ID, ID = Guid.NewGuid(), Location = lineIndex, Note = note };
+        //        MyContext.Insert<Label>(label).ExecuteAffrows();
+        //    }
+        //    else
+        //    {
+        //        var id = Guid.NewGuid();
+        //        var book = new BookLabel()
+        //        {
+        //            ID = id,
+        //            FileName = fileName,
+        //            Labels = new List<Label> { new Label() { ID = Guid.NewGuid(), BookLabelID = id, Location = lineIndex, Note = note } }
+        //        };
+        //        MyContext.Insert<BookLabel>(book).ExecuteAffrows();
+
+        //        foreach (var item in book.Labels)
+        //        {
+        //            MyContext.Insert<Label>(item).ExecuteAffrows();
+        //        }
+        //    }
+        //}
+
+        //public static BookLabel QueryBookLable(string fileName)
+        //{
+        //    return MyContext.Queryable<BookLabel>().Where(t => t.FileName.Equals(fileName)).LeftJoin<Label>((a, b) => b.BookLabelID.Equals(a.ID)).First();
+        //}
 
     }
 }

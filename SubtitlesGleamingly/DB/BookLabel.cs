@@ -23,14 +23,6 @@ namespace SubtitlesGleamingly.DB
         public Guid ID { get; set; }
         public int Location { get; set; }
         public string Note { get; set; }
-
-        public Guid BookLabelID { get; set; }
-
-        //public Label(int location,string note="")
-        //{
-        //    ID = Guid.NewGuid();
-        //    Location = location;
-        //    Note = note;
-        //}
+        public Guid BookLabel_ID { get; set; }
     }
 }

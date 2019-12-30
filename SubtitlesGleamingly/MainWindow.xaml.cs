@@ -41,9 +41,11 @@ namespace SubtitlesGleamingly
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            DBHelper.insertTest("1111",22);
+            DBHelper.xx();
 
-            var result = DBHelper.QueryBookLable("1111");
+            DBHelper.xx1();
+
+            //var result = DBHelper.QueryBookLable("1111");
 
 
             OpenFileDialog openFileDialog = new OpenFileDialog()
