@@ -28,8 +28,8 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="2,3">
-                            <TextBlock Text="{Binding}" TextWrapping="Wrap"></TextBlock>
-                            <Image Source="Resource/书签.png" HorizontalAlignment="Right"  Height="30"></Image>
+                            <TextBlock Text="{Binding LineValue}" TextWrapping="Wrap"></TextBlock>
+                            <Image Source="Resource/书签.png" HorizontalAlignment="Right"  Height="30" Visibility="{Binding IsShowLabel}"></Image>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

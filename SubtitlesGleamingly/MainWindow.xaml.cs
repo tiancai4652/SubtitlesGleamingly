@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using SubtitlesGleamingly.Base;
 using SubtitlesGleamingly.DB;
 using System;
 using System.Collections.Generic;
@@ -32,20 +33,16 @@ namespace SubtitlesGleamingly
             this.DataContext = this;
 
             SubTitleFileName = $@"{System.Windows.Forms.Application.StartupPath}\Subtitles\OldFriend1Season\Friends.S01E01.eng.ass";
-            SubTitleItems.Clear();
-            foreach (var item in ParseSubTitle())
-            {
-                SubTitleItems.Add(item);
-            }
+            ParseFileAndShow();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            DBHelper.xx();
+            //DBHelper.xx();
 
-            DBHelper.xx1();
+            //DBHelper.xx1();
 
-            //var result = DBHelper.QueryBookLable("1111");
+            ////var result = DBHelper.QueryBookLable("1111");
 
 
             OpenFileDialog openFileDialog = new OpenFileDialog()
@@ -56,21 +53,26 @@ namespace SubtitlesGleamingly
             if (openFileDialog.ShowDialog() == true)
             {
                 SubTitleFileName = openFileDialog.FileName;
-                if (SubTitleFileName.EndsWith(".ass"))
+                ParseFileAndShow();
+            }
+        }
+
+        void ParseFileAndShow()
+        {
+            if (SubTitleFileName.EndsWith(".ass"))
+            {
+                SubTitleItems.Clear();
+                foreach (var item in ParseSubTitle())
                 {
-                    SubTitleItems.Clear();
-                    foreach (var item in ParseSubTitle())
-                    {
-                        SubTitleItems.Add(item);
-                    }
+                    SubTitleItems.Add(new BookLine() { LineValue = item });
                 }
-                else if (SubTitleFileName.EndsWith(".txt"))
+            }
+            else if (SubTitleFileName.EndsWith(".txt"))
+            {
+                SubTitleItems.Clear();
+                foreach (var item in ParseText())
                 {
-                    SubTitleItems.Clear();
-                    foreach (var item in ParseText())
-                    {
-                        SubTitleItems.Add(item);
-                    }
+                    SubTitleItems.Add(new BookLine() { LineValue = item });
                 }
             }
         }
@@ -110,8 +112,8 @@ namespace SubtitlesGleamingly
             return result;
         }
 
-        ObservableCollection<string> _SubTitleItems = new ObservableCollection<string>();
-        public ObservableCollection<string> SubTitleItems
+        ObservableCollection<BookLine> _SubTitleItems = new ObservableCollection<BookLine>();
+        public ObservableCollection<BookLine> SubTitleItems
         {
             get
             {
@@ -124,8 +126,8 @@ namespace SubtitlesGleamingly
             }
         }
 
-        string _SelectedSubTitleItem = "";
-        public string SelectedSubTitleItem
+        BookLine _SelectedSubTitleItem ;
+        public BookLine SelectedSubTitleItem
         {
             get
             {
@@ -165,8 +167,8 @@ namespace SubtitlesGleamingly
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            this.Visibility= Visibility.Hidden;
-            ShowView showView = new ShowView(SubTitleItems,SelectedSubTitleItem);
+            this.Visibility = Visibility.Hidden;
+            ShowView showView = new ShowView(SubTitleItems, SelectedSubTitleItem);
             showView.ShowDialog();
             this.Visibility = Visibility.Visible;
         }

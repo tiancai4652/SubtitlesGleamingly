@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace SubtitlesGleamingly.Base
 {
@@ -22,17 +23,32 @@ namespace SubtitlesGleamingly.Base
             }
         }
 
-        BookLabel _BookLabel;
-        public BookLabel BookLabel
+        Label _Label;
+        public Label Label
         {
             get
             {
-                return _BookLabel;
+                return _Label;
             }
             set
             {
-                _BookLabel = value;
-                OnPropertyChanged(nameof(BookLabel));
+                _Label = value;
+                OnPropertyChanged(nameof(Label));
+                IsShowLabel= Label!=null? Visibility.Visible: Visibility.Hidden;
+            }
+        }
+
+        Visibility _IsShowLabel =  Visibility.Hidden;
+        public Visibility IsShowLabel
+        {
+            get
+            {
+                return _IsShowLabel;
+            }
+            set
+            {
+                _IsShowLabel = value;
+                OnPropertyChanged(nameof(IsShowLabel));
             }
         }
     }

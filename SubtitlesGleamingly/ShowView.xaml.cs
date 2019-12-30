@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SubtitlesGleamingly.Base;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -29,15 +30,15 @@ namespace SubtitlesGleamingly
             this.DataContext = this;
         }
 
-        public ShowView(ObservableCollection<string> subTitleItems, string selected) : this()
+        public ShowView(ObservableCollection<BookLine> subTitleItems, BookLine selected) : this()
         {
             SubTitleItems = subTitleItems;
-            SelectedSubTitleItem = string.IsNullOrEmpty(selected) ? subTitleItems?.Count == 0 ? "" : subTitleItems[0] : selected;
+            SelectedSubTitleItem = selected==null ? subTitleItems?.Count == 0 ? null : subTitleItems[0] : selected;
             LineIndex = SubTitleItems.IndexOf(SelectedSubTitleItem);
         }
 
-        ObservableCollection<string> _SubTitleItems = new ObservableCollection<string>();
-        public ObservableCollection<string> SubTitleItems
+        ObservableCollection<BookLine> _SubTitleItems = new ObservableCollection<BookLine>();
+        public ObservableCollection<BookLine> SubTitleItems
         {
             get
             {
@@ -93,8 +94,8 @@ namespace SubtitlesGleamingly
             }
         }
 
-        string _SelectedSubTitleItem = "";
-        public string SelectedSubTitleItem
+        BookLine _SelectedSubTitleItem;
+        public BookLine SelectedSubTitleItem
         {
             get
             {

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using SubtitlesGleamingly.Base;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +23,7 @@ namespace SubtitlesGleamingly.DB
             {
                 ID = Guid.NewGuid(),
                 FileName = "1111",
-                Labels = new List<Label> { new Label() { ID = Guid.NewGuid(), Location = 1 } }
+                Labels = new ObservableCollection<Label> { new Label() { ID = Guid.NewGuid(), Location = 1 } }
             };
             MyContext.GetRepository<BookLabel>().Insert(book);
         }
