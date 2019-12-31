@@ -142,6 +142,54 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="app.config" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E01.chs&amp;eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E01.eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E02.chs&amp;eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E02.eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E03.chs&amp;eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E03.eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E04.chs&amp;eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E04.eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E05.chs&amp;eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E05.eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E06.chs&amp;eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E06.eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E07.chs&amp;eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E07.eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E08.chs&amp;eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E08.eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E09.chs&amp;eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E09.eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E10.chs&amp;eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E10.eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E11.chs&amp;eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E11.eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E12.chs&amp;eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E12.eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E13.chs&amp;eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E13.eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E14.chs&amp;eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E14.eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E15.chs&amp;eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E15.eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E16.chs&amp;eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E16.eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E17.chs&amp;eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E17.eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E18.chs&amp;eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E18.eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E19.chs&amp;eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E19.eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E20.chs&amp;eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E20.eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E21.chs&amp;eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E21.eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E22.chs&amp;eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E22.eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E23.chs&amp;eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E23.eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E24.chs&amp;eng.ass" />
+    <None Include="bin\Debug\Subtitles\OldFriend1Season\Friends.S01E24.eng.ass" />
     <None Include="FodyWeavers.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -313,6 +361,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resource\书签.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bin\Debug\Subtitles\OldFriend1Season\大问题：简明哲学导论_第9版_【公众号：电子书站】.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\Fody.6.0.5\build\Fody.targets" Condition="Exists('packages\Fody.6.0.5\build\Fody.targets')" />
