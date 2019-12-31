@@ -151,7 +151,7 @@ namespace SubtitlesGleamingly
             }
         }
 
-        double _LineFontSize = 18;
+        double _LineFontSize = 10;
         public double LineFontSize
         {
             get

@@ -149,7 +149,7 @@ namespace SubtitlesGleamingly
 
             var longStr = File.ReadAllText(SubTitleFileName, Encoding.UTF8);
 
-            var list = longStr.Split('，', '。', '？');
+            var list = longStr.Split('，', '。', '？','\r','\n');
 
             foreach (string line in list)
             {
