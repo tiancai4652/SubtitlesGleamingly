@@ -18,6 +18,7 @@ using System.Windows.Shapes;
 using Label = SubtitlesGleamingly.Base.Label;
 using NHotkey.Wpf;
 using NHotkey;
+using System.Threading;
 
 namespace SubtitlesGleamingly
 {
@@ -33,12 +34,74 @@ namespace SubtitlesGleamingly
 
             HotkeyManager.Current.AddOrReplace("ShutDown", Key.Escape, ModifierKeys.None, ShutDown);
             HotkeyManager.Current.AddOrReplace("CopyCurrentLine", Key.C, ModifierKeys.Control, CopyCurrentLine);
+            HotkeyManager.Current.AddOrReplace("AutoPager", Key.Enter, ModifierKeys.Control, AutoPager);
+            HotkeyManager.Current.AddOrReplace("IncreaseAutoPagerInternal", Key.Add, ModifierKeys.Control, IncreaseAutoPagerInternal);
+            HotkeyManager.Current.AddOrReplace("DecreaseAutoPagerInternal", Key.Subtract, ModifierKeys.Control, DecreaseAutoPagerInternal);
 
+            Task.Factory.StartNew(new Action(() =>
+            {
+                while (IsAppRunning)
+                {
+                    if (IsEnabledAutoPager)
+                    {
+                        Thread.Sleep(AutoPagerIntervalS * 1000);
+                        if (LineIndex + 1 <= SubTitleItems.Count)
+                        {
+                            LineIndex++;
+                            SelectedSubTitleItem = SubTitleItems[LineIndex];
+                        }
+                    }
+                    Thread.Sleep(100);
+                }
+            }));
         }
+
         private void ShutDown(object sender, HotkeyEventArgs e)
         {
+            IsAppRunning = false;
             SaveLableForCurrentLocation();
             Environment.Exit(-1);
+        }
+
+        private void IncreaseAutoPagerInternal(object sender, HotkeyEventArgs e)
+        {
+            AutoPagerIntervalS++;
+        }
+
+        private void DecreaseAutoPagerInternal(object sender, HotkeyEventArgs e)
+        {
+            if (AutoPagerIntervalS - 1 >= 1)
+            {
+                AutoPagerIntervalS--;
+            }
+        }
+
+
+
+        bool IsAppRunning = true;
+        bool IsEnabledAutoPager = false;
+        static object locker = new object();
+        int _AutoPagerIntervalS = 10;
+        int AutoPagerIntervalS
+        {
+            get
+            {
+                lock (locker)
+                {
+                    return _AutoPagerIntervalS;
+                }
+            }
+            set
+            {
+                lock (locker)
+                {
+                    _AutoPagerIntervalS = value;
+                }
+            }
+        }
+        private void AutoPager(object sender, HotkeyEventArgs e)
+        {
+            IsEnabledAutoPager = !IsEnabledAutoPager;
         }
 
         private void CopyCurrentLine(object sender, HotkeyEventArgs e)
