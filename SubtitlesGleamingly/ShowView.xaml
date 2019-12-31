@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SubtitlesGleamingly"
         mc:Ignorable="d" 
         Title="ShowView"  WindowStyle="None"  AllowsTransparency="True" Background="#02FFFFFF"  PreviewMouseLeftButtonUp="Window_PreviewMouseLeftButtonUp" PreviewMouseRightButtonUp="Window_PreviewMouseRightButtonUp" Loaded="Window_Loaded"
-         ResizeMode="CanResizeWithGrip" Topmost="True" Height="100" Width="250" Style="{DynamicResource WindowStyle1}" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
+         ResizeMode="CanResizeWithGrip" ShowInTaskbar="False"  Topmost="True" Height="100" Width="250" Style="{DynamicResource WindowStyle1}" WindowStartupLocation="CenterScreen" Closing="Window_Closing">
     <Window.Resources>
         <ControlTemplate x:Key="WindowTemplateKey" TargetType="{x:Type Window}">
             <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">

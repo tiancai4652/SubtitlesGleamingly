@@ -32,11 +32,21 @@ namespace SubtitlesGleamingly
             this.DataContext = this;
 
             HotkeyManager.Current.AddOrReplace("ShutDown", Key.Escape, ModifierKeys.None, ShutDown);
-        
+            HotkeyManager.Current.AddOrReplace("CopyCurrentLine", Key.C, ModifierKeys.Control, CopyCurrentLine);
+
         }
         private void ShutDown(object sender, HotkeyEventArgs e)
         {
+            SaveLableForCurrentLocation();
             Environment.Exit(-1);
+        }
+
+        private void CopyCurrentLine(object sender, HotkeyEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(SelectedSubTitleItem?.LineValue))
+            {
+                Clipboard.SetDataObject(SelectedSubTitleItem.LineValue);
+            }
         }
 
         public ShowView(string fileName, ObservableCollection<BookLine> subTitleItems, BookLine selected) : this()
@@ -224,14 +234,13 @@ namespace SubtitlesGleamingly
 
         private void Window_Closing(object sender, CancelEventArgs e)
         {
-            //var book = new BookLabel()
-            //{
-            //    ID = Guid.NewGuid(),
-            //    FileName = FileName,
-            //    Labels = new ObservableCollection<Label> { new Label() { ID = Guid.NewGuid(), Location = LineIndex } }
-            //};
+            SaveLableForCurrentLocation();
+        }
+
+        void SaveLableForCurrentLocation()
+        {
             var Label = new Label() { ID = Guid.NewGuid(), Location = LineIndex };
-            DBHelper.SetBookLabel(FileName,Label);
+            DBHelper.SetBookLabel(FileName, Label);
         }
     }
 }
