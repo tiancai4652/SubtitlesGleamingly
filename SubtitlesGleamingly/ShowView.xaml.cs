@@ -160,16 +160,9 @@ namespace SubtitlesGleamingly
             }
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            //this.MouseDown += delegate { DragMove(); };
-        }
-
         protected override void OnMouseLeftButtonDown(MouseButtonEventArgs e)
         {
             base.OnMouseLeftButtonDown(e);
-
-            // Begin dragging the window
             this.DragMove();
         }
 
@@ -188,19 +181,6 @@ namespace SubtitlesGleamingly
 
         private void Grid_MouseWheel_1(object sender, MouseWheelEventArgs e)
         {
-            //double stepX = 20;
-            //double stepY = 10;
-            //if (e.Delta < 0)
-            //{
-            //    this.Width = this.Width - stepX < 100 ? 100 : this.Width - stepX;
-            //    this.Height = this.Height - stepY < 100 ? 100 : this.Height - stepY;
-            //}
-            //else
-            //{
-            //    this.Width = this.Width + stepX;
-            //    this.Height = this.Height + stepY;
-            //}
-
             double step = 1;
             if (e.Delta < 0)
             {
