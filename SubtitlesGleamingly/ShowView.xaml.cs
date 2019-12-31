@@ -16,6 +16,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Label = SubtitlesGleamingly.Base.Label;
+using NHotkey.Wpf;
+using NHotkey;
 
 namespace SubtitlesGleamingly
 {
@@ -24,12 +26,17 @@ namespace SubtitlesGleamingly
     /// </summary>
     public partial class ShowView : Window, INotifyPropertyChanged
     {
-
-
         public ShowView()
         {
             InitializeComponent();
             this.DataContext = this;
+
+            HotkeyManager.Current.AddOrReplace("ShutDown", Key.Escape, ModifierKeys.None, ShutDown);
+        
+        }
+        private void ShutDown(object sender, HotkeyEventArgs e)
+        {
+            Environment.Exit(-1);
         }
 
         public ShowView(string fileName, ObservableCollection<BookLine> subTitleItems, BookLine selected) : this()
