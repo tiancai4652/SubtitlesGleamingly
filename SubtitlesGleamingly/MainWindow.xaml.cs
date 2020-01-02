@@ -29,40 +29,27 @@ namespace SubtitlesGleamingly
         public MainWindow()
         {
             InitializeComponent();
-
-            //DBHelper.xx();
-            //DBHelper.xx1();
-
-
             this.ShowInTaskbar = false;
             this.DataContext = this;
-
             SubTitleFileName = $@"{System.Windows.Forms.Application.StartupPath}\Subtitles\OldFriend1Season\Friends.S01E01.eng.ass";
             ParseFileAndShow();
-
-         
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //DBHelper.xx();
-
-            //DBHelper.xx1();
-
-            ////var result = DBHelper.QueryBookLable("1111");
-
-
             OpenFileDialog openFileDialog = new OpenFileDialog()
             {
                 InitialDirectory = $@"{System.Windows.Forms.Application.StartupPath}\Subtitles\OldFriend1Season",
-                //Filter = "字幕|*.ass"
-            };
+                Filter = "字幕|*.ass|文本|*.txt"
+        };
             if (openFileDialog.ShowDialog() == true)
             {
                 SubTitleFileName = openFileDialog.FileName;
                 ParseFileAndShow();
             }
         }
+
+        #region Private Method
 
         void ParseFileAndShow()
         {
@@ -149,7 +136,7 @@ namespace SubtitlesGleamingly
 
             var longStr = File.ReadAllText(SubTitleFileName, Encoding.UTF8);
 
-            var list = longStr.Split('，', '。', '？','\r','\n');
+            var list = longStr.Split('，', '。', '？', '\r', '\n','；','：');
 
             foreach (string line in list)
             {
@@ -161,6 +148,10 @@ namespace SubtitlesGleamingly
             }
             return result;
         }
+
+        #endregion
+
+        #region Property
 
         ObservableCollection<BookLine> _SubTitleItems = new ObservableCollection<BookLine>();
         public ObservableCollection<BookLine> SubTitleItems
@@ -204,6 +195,7 @@ namespace SubtitlesGleamingly
             }
         }
 
+        #endregion
 
         #region INotifyPropertyChanged
 
