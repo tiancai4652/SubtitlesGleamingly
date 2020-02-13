@@ -109,6 +109,11 @@ namespace SubtitlesGleamingly
             if (!string.IsNullOrEmpty(SelectedSubTitleItem?.LineValue))
             {
                 Clipboard.SetDataObject(SelectedSubTitleItem.LineValue);
+                if (LineIndex + 1 <= SubTitleItems.Count)
+                {
+                    LineIndex++;
+                    SelectedSubTitleItem = SubTitleItems[LineIndex];
+                }
             }
         }
 
