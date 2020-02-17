@@ -371,6 +371,10 @@
   <ItemGroup>
     <Resource Include="bin\Debug\Subtitles\OldFriend1Season\思考，快与慢.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bin\Debug\Subtitles\OldFriend1Season\乌合之众.txt" />
+    <Resource Include="bin\Debug\Subtitles\OldFriend1Season\原则.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\Fody.6.0.5\build\Fody.targets" Condition="Exists('packages\Fody.6.0.5\build\Fody.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
