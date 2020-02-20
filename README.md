@@ -16,11 +16,11 @@
 
 #### 快捷键：
 
-ESC:Shut Down
-Ctrl+C：Copy
-Ctrl+Enter:Auto Go Down
-Ctrl+-:decrease Auto Go Down Time
-Ctrl++:increase Auto Go Down Time
+ESC:Shut Down  
+Ctrl+C：Copy  
+Ctrl+Enter:Auto Go Down  
+Ctrl+-:decrease Auto Go Down Time  
+Ctrl++:increase Auto Go Down Time  
 
 #### 鼠标：
 
