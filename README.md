@@ -42,10 +42,10 @@ Ctrl++:increase Auto Go Down Time
 
 ##### 界面截图
 
-![image](https://github.com/tiancai4652/ReadME_Images/SubTitleTotal.png)
+![image](https://github.com/tiancai4652/ReadME_Images/blob/master/SubTitleTotal.png)
 
 
 
 ##### 效果
 
-![image](https://github.com/tiancai4652/ReadME_Images/SubTitleGIF.gif)
+![image](https://github.com/tiancai4652/ReadME_Images/blob/master/SubTitleGIF.gif)
