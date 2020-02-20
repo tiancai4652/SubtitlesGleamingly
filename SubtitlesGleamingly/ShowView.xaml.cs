@@ -142,7 +142,7 @@ namespace SubtitlesGleamingly
         }
 
 
-        double _LineOpacity = 0.5;
+        double _LineOpacity = 0.8;
         public double LineOpacity
         {
             get
@@ -156,7 +156,7 @@ namespace SubtitlesGleamingly
             }
         }
 
-        double _LineFontSize = 10;
+        double _LineFontSize = 20;
         public double LineFontSize
         {
             get
