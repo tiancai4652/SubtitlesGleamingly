@@ -2,6 +2,10 @@
 
 看美剧学英语的一个复习，默背小工具，效果像音乐软件的透明歌词浮动框一样。
 
+##### 效果
+
+![image](https://github.com/tiancai4652/ReadME_Images/blob/master/SubTitleGIF.gif)
+
 ------
 
 操作简洁方便，可自由的移动位置，放大缩小，前进后退
@@ -46,6 +50,4 @@ Ctrl++:increase Auto Go Down Time
 
 
 
-##### 效果
 
-![image](https://github.com/tiancai4652/ReadME_Images/blob/master/SubTitleGIF.gif)
